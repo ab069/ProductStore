@@ -1,0 +1,35 @@
+[
+    {
+      "id": 1,
+      "name": "Laptop",
+      "description": "A powerful laptop for work and play",
+      "price": 999.99,
+      "category": "Electronics",
+      "image": "1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "T-Shirt",
+      "description": "Comfortable and stylish",
+      "price": 19.99,
+      "category": "Clothing",
+      "image": "2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Smartwatch",
+      "description": "Track your fitness with ease",
+      "price": 149.99,
+      "category": "Wearables",
+      "image": "3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Headphones",
+      "description": "Noise-canceling headphones for a better sound experience",
+      "price": 129.99,
+      "category": "Electronics",
+      "image": "4.jpg"
+    }
+  ]
+  
