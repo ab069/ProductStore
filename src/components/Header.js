@@ -1,5 +1,5 @@
 // src/components/Header.js
-import React, { useState } from 'react';
+import React, { useState,useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { AiOutlineShoppingCart } from 'react-icons/ai'; // You can install react-icons if not installed yet
 import CartPopup from './CartPopup'; // Import the CartPopup component
@@ -10,21 +10,23 @@ const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, 
   const [showCart, setShowCart] = useState(false); // To toggle cart popup visibility
   const cartItems = useSelector((state) => state.cart.items); // Get cart items from Redux state
 
-  const handleCategoryChange = (event) => {
+
+
+  const handleCategoryChange =useCallback( (event) => {
     setSelectedCategory(event.target.value);
-  };
+  },[setSelectedCategory]);
 
-  const handleMinPriceChange = (event) => {
+  const handleMinPriceChange =useCallback( (event) => {
     setMinPrice(Number(event.target.value));
-  };
+  },[setMinPrice]);
 
-  const handleMaxPriceChange = (event) => {
+  const handleMaxPriceChange = useCallback((event) => {
     setMaxPrice(Number(event.target.value));
-  };
+  },[setMaxPrice]);
 
-  const toggleCartPopup = () => {
+  const toggleCartPopup = useCallback(() => {
     setShowCart(!showCart); // Toggle cart popup visibility
-  };
+  },[showCart]);
 
   return (
     <div className="mb-8 text-center bg-blue-500">

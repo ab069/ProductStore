@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { useGetProductsByCategoryQuery } from './features/api/productsApi';
 import ProductGrid from './components/ProductGrid';
-import { useDispatch } from 'react-redux';
-import { addToCart } from './features/cart/cartSlice';
+
+
 import Header from './components/Header';
 //import './output.css'; // or './App.css'
 
@@ -12,7 +12,6 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
-  const dispatch = useDispatch();
 
   const { data: products, error, isLoading } = useGetProductsByCategoryQuery({
     category: selectedCategory,
@@ -21,9 +20,6 @@ const App = () => {
   });
 
 
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-  };
 
 
   return (
@@ -43,7 +39,7 @@ const App = () => {
 
       {products && products.length === 0 && <p>No products available for this category.</p>}
 
-      {products && products.length > 0 && <ProductGrid products={products} onAddToCart={handleAddToCart} />}
+      {products && products.length > 0 && <ProductGrid products={products}  />}
 
       {/* <CartSummary
       /> */}

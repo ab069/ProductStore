@@ -1,37 +1,51 @@
-import React from 'react';
+
 
 import { useDispatch, useSelector } from 'react-redux';
-
-import {  removeFromCart, updateQuantity } from '../features/cart/cartSlice';
+import React, { useCallback,useMemo } from 'react';
+import {  removeFromCart,increaseQuantity,decreaseQuantity } from '../features/cart/cartSlice';
 const CartSummary = () => {
   const cart = useSelector((state) => state.cart.items);
     const dispatch = useDispatch();
   
-    const handleRemoveFromCart = (productId) => {
+      // const handleAddToCart = useCallback((product) => {
+  //   dispatch(addToCart(product));
+  // },[dispatch]);
+
+    const handleRemoveFromCart = useCallback((productId) => {
       dispatch(removeFromCart(productId));
-    };
+    },[dispatch]);
   
-    const handleIncreaseQuantity = (productId) => {
-      const product = cart.find(item => item.id === productId);
-      if (product) {
-        dispatch(updateQuantity({ productId, quantity: product.quantity + 1 }));
-      }
-    };
+    const handleIncreaseQuantity =useCallback( (productId) => {
+        dispatch(increaseQuantity( productId ));
+    },[dispatch]);
   
-    const handleDecreaseQuantity = (productId) => {
-      const product = cart.find(item => item.id === productId);
-      if (product && product.quantity > 1) {
-        dispatch(updateQuantity({ productId, quantity: product.quantity - 1 }));
-      }
-    };
-  const handleCheckout = () => {
+    const handleDecreaseQuantity =useCallback( (productId) => {
+        dispatch(decreaseQuantity( productId ));
+      
+    },[dispatch]);
+
+  const handleCheckout =useCallback(  () => {
     alert('Checkout process started!');
-  };
+  },[]);
+  const Totalitems = useMemo(() => {
+   
+    // Expensive calculation logic here
+    return  cart.reduce((acc, item) => acc + item.quantity,0);
+    }, [cart]);
+
+
+    const Totalprice = useMemo(() => {
+   
+      // Expensive calculation logic here
+      return  cart.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2);
+      }, [cart]);
+  
+  
 
   return (
     <div className="mt-8">
       <h2 className="text-xl font-semibold">Cart Summary</h2>
-      <p>Total items: {cart.reduce((acc, item) => acc + item.quantity, 0)}</p>
+      <p>Total items: {Totalitems}</p>
       
       {cart.length > 0 && (
         <div className="mt-4">
@@ -63,7 +77,7 @@ const CartSummary = () => {
               </li>
             ))}
           </ul>
-          <p>Total price: ${cart.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2)}</p>
+          <p>Total price: ${Totalprice}</p>
 
         </div>
       )}
