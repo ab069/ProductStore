@@ -5,6 +5,8 @@ import ProductGrid from './components/ProductGrid';
 import { useDispatch } from 'react-redux';
 import { addToCart } from './features/cart/cartSlice';
 import Header from './components/Header';
+//import './output.css'; // or './App.css'
+
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');

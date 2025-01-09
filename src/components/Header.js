@@ -27,7 +27,7 @@ const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, 
   };
 
   return (
-    <div className="mb-8 text-center">
+    <div className="mb-8 text-center bg-blue-500">
       <h1 className="text-2xl font-bold mb-6">Product Store</h1>
 
       <div className="container">
