@@ -1,6 +1,29 @@
 import React from 'react';
 
-const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handleDecreaseQuantity }) => {
+import { useDispatch, useSelector } from 'react-redux';
+
+import {  removeFromCart, updateQuantity } from '../features/cart/cartSlice';
+const CartSummary = () => {
+  const cart = useSelector((state) => state.cart.items);
+    const dispatch = useDispatch();
+  
+    const handleRemoveFromCart = (productId) => {
+      dispatch(removeFromCart(productId));
+    };
+  
+    const handleIncreaseQuantity = (productId) => {
+      const product = cart.find(item => item.id === productId);
+      if (product) {
+        dispatch(updateQuantity({ productId, quantity: product.quantity + 1 }));
+      }
+    };
+  
+    const handleDecreaseQuantity = (productId) => {
+      const product = cart.find(item => item.id === productId);
+      if (product && product.quantity > 1) {
+        dispatch(updateQuantity({ productId, quantity: product.quantity - 1 }));
+      }
+    };
   const handleCheckout = () => {
     alert('Checkout process started!');
   };
@@ -9,8 +32,7 @@ const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handl
     <div className="mt-8">
       <h2 className="text-xl font-semibold">Cart Summary</h2>
       <p>Total items: {cart.reduce((acc, item) => acc + item.quantity, 0)}</p>
-      <p>Total price: ${cart.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2)}</p>
-
+      
       {cart.length > 0 && (
         <div className="mt-4">
           <h3 className="font-semibold">Cart Items</h3>
@@ -41,6 +63,8 @@ const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handl
               </li>
             ))}
           </ul>
+          <p>Total price: ${cart.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2)}</p>
+
         </div>
       )}
 

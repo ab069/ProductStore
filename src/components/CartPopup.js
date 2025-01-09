@@ -3,12 +3,9 @@ import React from 'react';
 
 import CartSummary from './CartSummary';
 
-const CartPopup = ({ cartItems, closePopup,cart,handleRemoveFromCart,handleIncreaseQuantity,handleDecreaseQuantity }) => {
+const CartPopup = ({  closePopup }) => {
   // Calculate the total price
-  const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  ).toFixed(2); // Ensure two decimal places
+ // Ensure two decimal places
 
   return (
     <div>
@@ -38,11 +35,7 @@ const CartPopup = ({ cartItems, closePopup,cart,handleRemoveFromCart,handleIncre
           zIndex: 1001,
         }}
       >
-        <CartSummary
-          cart={cart}
-          handleRemoveFromCart={handleRemoveFromCart}
-          handleIncreaseQuantity={handleIncreaseQuantity}
-          handleDecreaseQuantity={handleDecreaseQuantity}/>
+        <CartSummary/>
        
       </div>
     </div>
