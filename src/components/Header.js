@@ -1,6 +1,13 @@
-import React from 'react';
+// src/components/Header.js
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { AiOutlineShoppingCart } from 'react-icons/ai'; // You can install react-icons if not installed yet
+import CartPopup from './CartPopup'; // Import the CartPopup component
 
 const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, maxPrice, setMaxPrice }) => {
+  const [showCart, setShowCart] = useState(false); // To toggle cart popup visibility
+  const cartItems = useSelector((state) => state.cart.items); // Get cart items from Redux state
+
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
@@ -11,6 +18,10 @@ const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, 
 
   const handleMaxPriceChange = (event) => {
     setMaxPrice(Number(event.target.value));
+  };
+
+  const toggleCartPopup = () => {
+    setShowCart(!showCart); // Toggle cart popup visibility
   };
 
   return (
@@ -27,7 +38,6 @@ const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, 
               value={selectedCategory}
               onChange={handleCategoryChange}
               className="form-select w-100"
-            
             >
               <option value="All">All</option>
               <option value="Electronics">Electronics</option>
@@ -57,7 +67,6 @@ const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, 
                   onChange={handleMaxPriceChange}
                   className="w-50"
                 />
-                
               </div>
               <div className="d-flex justify-content-between w-100 mt-2">
                 <span>Min Price: ${minPrice}</span>
@@ -65,8 +74,36 @@ const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, 
               </div>
             </div>
           </div>
+
+          {/* Cart Icon */}
+          <div className="col-12 col-md-3 mb-4 d-flex justify-content-end align-items-center">
+            <div
+              onClick={toggleCartPopup}
+              style={{ cursor: 'pointer', position: 'relative' }}
+            >
+              <AiOutlineShoppingCart size={30} />
+              {/* Cart Item Count */}
+              <span
+                style={{
+                  position: 'absolute',
+                  top: '0',
+                  right: '-10px',
+                  backgroundColor: 'red',
+                  color: 'white',
+                  padding: '5px 8px',
+                  borderRadius: '50%',
+                  fontSize: '14px',
+                }}
+              >
+                {cartItems.length}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Cart Popup */}
+      {showCart && <CartPopup cartItems={cartItems} closePopup={toggleCartPopup} />}
     </div>
   );
 };

@@ -21,13 +21,13 @@ const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handl
                 <div>
                   <button
                     onClick={() => handleDecreaseQuantity(item.id)}
-                    className="bg-red-500 text-black px-2 py-1 rounded mr-2"
+                    className="bg-red-500 text-black px-2 me-3 py-1 rounded mr-2"
                   >
                     -
                   </button>
                   <button
                     onClick={() => handleIncreaseQuantity(item.id)}
-                    className="bg-green-500 text-black px-2 py-1 rounded"
+                    className="bg-green-500 text-black  me-3 px-2 py-1 rounded"
                   >
                     +
                   </button>
