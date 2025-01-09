@@ -5,6 +5,8 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // Create the root element and render your app
 const root = ReactDOM.createRoot(document.getElementById('root')); // <-- Updated rendering method

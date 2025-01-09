@@ -1,7 +1,10 @@
-// src/components/CartSummary.js
 import React from 'react';
 
 const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handleDecreaseQuantity }) => {
+  const handleCheckout = () => {
+    alert('Checkout process started!');
+  };
+
   return (
     <div className="mt-8">
       <h2 className="text-xl font-semibold">Cart Summary</h2>
@@ -18,19 +21,19 @@ const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handl
                 <div>
                   <button
                     onClick={() => handleDecreaseQuantity(item.id)}
-                    className="bg-red-500 text-white px-2 py-1 rounded mr-2"
+                    className="bg-red-500 text-black px-2 py-1 rounded mr-2"
                   >
                     -
                   </button>
                   <button
                     onClick={() => handleIncreaseQuantity(item.id)}
-                    className="bg-green-500 text-white px-2 py-1 rounded"
+                    className="bg-green-500 text-black px-2 py-1 rounded"
                   >
                     +
                   </button>
                   <button
                     onClick={() => handleRemoveFromCart(item.id)}
-                    className="bg-red-500 text-white px-2 py-1 rounded ml-2"
+                    className="bg-red-500 text-black px-2 py-1 rounded ml-2"
                   >
                     Remove
                   </button>
@@ -40,6 +43,16 @@ const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handl
           </ul>
         </div>
       )}
+
+      {/* Checkout Button */}
+      <div className="mt-4">
+        <button
+          onClick={handleCheckout}
+          className="bg-blue-500 text-black px-4 py-2 rounded"
+        >
+          Checkout
+        </button>
+      </div>
     </div>
   );
 };
