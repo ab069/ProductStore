@@ -18,6 +18,70 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+
+
+fully functional Product Store with the following features:
+
+Product listing with filter options.
+Add to Cart and Remove from Cart functionality.
+Display total price, item count, and a cart summary.
+Persist cart state.
+
+
+1. Product List
+Display a grid/list of products with the following information:
+Product image, name, description, price, and an "Add to Cart" button.
+Include filtering options:
+Category: Dropdown or checkboxes to filter by categories (e.g., Electronics, Clothing).
+Price Range: Slider or input fields for filtering by price.
+2. Cart Functionality
+Add to Cart:
+Clicking the "Add to Cart" button should add the selected product to the cart.
+Update the Redux state to include product details and quantity.
+Remove from Cart:
+Provide a "Remove" button for each item in the cart.
+Update the Redux state to remove the item.
+Quantity Adjustment:
+Allow users to increase or decrease the quantity of items in the cart.
+Update the Redux state accordingly.
+3. Cart Summary
+Display a cart summary with:
+Total number of items in the cart.
+Total price (update dynamically based on cart state).
+A "Proceed to Checkout" button (non-functional for this task).
+4. State Management
+Create a productStoreSlice for managing the product list and cart state.
+Initial State: Include a list of products and an empty cart array.
+Reducers:
+addToCart: Add a product to the cart.
+removeFromCart: Remove a product from the cart.
+updateQuantity: Update the quantity of a product in the cart.
+filterProducts: Filter products by category or price range.
+Async Thunks: Fetch product data from an API or mock JSON file.
+5. Integration
+Use useSelector and useDispatch hooks to interact with Redux state.
+Ensure cart updates are reflected dynamically in the UI.
+6. API Integration
+Fetch the product list from a mock API or JSON file using createAsyncThunk.
+Handle loading, success, and error states.
+7. Styling
+Use Tailwind CSS or your preferred framework to design a clean, responsive layout.
+Ensure the product grid and cart summary look good on both desktop and mobile.
+8. Testing
+Test the following:
+Product filtering by category and price.
+Adding and removing products from the cart.
+Adjusting item quantities and validating total price updates.
+Edge cases like empty cart or invalid filter inputs.
+
+
+
+
+
+
+
+
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
@@ -73,3 +137,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 >>>>>>> 6565831 (Initial commit)
+
+
+
