@@ -52,6 +52,10 @@ const App = () => {
         setMinPrice={setMinPrice}
         maxPrice={maxPrice}
         setMaxPrice={setMaxPrice}
+        cart={cart}
+        handleRemoveFromCart={handleRemoveFromCart}
+        handleIncreaseQuantity={handleIncreaseQuantity}
+        handleDecreaseQuantity={handleDecreaseQuantity}
       />
 
       {isLoading && <p>Loading...</p>}
@@ -61,12 +65,12 @@ const App = () => {
 
       {products && products.length > 0 && <ProductGrid products={products} onAddToCart={handleAddToCart} />}
 
-      {/* <CartSummary
+      <CartSummary
         cart={cart}
         handleRemoveFromCart={handleRemoveFromCart}
         handleIncreaseQuantity={handleIncreaseQuantity}
         handleDecreaseQuantity={handleDecreaseQuantity}
-      /> */}
+      />
     </div>
   );
 };

@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux';
 import { AiOutlineShoppingCart } from 'react-icons/ai'; // You can install react-icons if not installed yet
 import CartPopup from './CartPopup'; // Import the CartPopup component
 
-const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, maxPrice, setMaxPrice }) => {
+import CartSummary from './CartSummary';
+
+const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, maxPrice, setMaxPrice,cart,handleRemoveFromCart,handleIncreaseQuantity,handleDecreaseQuantity }) => {
   const [showCart, setShowCart] = useState(false); // To toggle cart popup visibility
   const cartItems = useSelector((state) => state.cart.items); // Get cart items from Redux state
 
@@ -103,7 +105,18 @@ const Header = ({ selectedCategory, setSelectedCategory, minPrice, setMinPrice, 
       </div>
 
       {/* Cart Popup */}
-      {showCart && <CartPopup cartItems={cartItems} closePopup={toggleCartPopup} />}
+      {showCart && 
+    //    <CartSummary
+    //    cart={cart}
+    //    handleRemoveFromCart={handleRemoveFromCart}
+    //    handleIncreaseQuantity={handleIncreaseQuantity}
+    //    handleDecreaseQuantity={handleDecreaseQuantity}
+    //  />
+     <CartPopup cartItems={cartItems} closePopup={toggleCartPopup} cart={cart}
+        handleRemoveFromCart={handleRemoveFromCart}
+        handleIncreaseQuantity={handleIncreaseQuantity}
+       handleDecreaseQuantity={handleDecreaseQuantity} />
+      }
     </div>
   );
 };

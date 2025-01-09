@@ -1,7 +1,9 @@
 // src/components/CartPopup.js
 import React from 'react';
 
-const CartPopup = ({ cartItems, closePopup }) => {
+import CartSummary from './CartSummary';
+
+const CartPopup = ({ cartItems, closePopup,cart,handleRemoveFromCart,handleIncreaseQuantity,handleDecreaseQuantity }) => {
   // Calculate the total price
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -36,22 +38,12 @@ const CartPopup = ({ cartItems, closePopup }) => {
           zIndex: 1001,
         }}
       >
-        <h2 className="text-xl font-semibold mb-4">Cart Summary</h2>
-        <ul>
-          {cartItems.map((item) => (
-            <li key={item.id}>
-              {item.name} (x{item.quantity}) - ${ (item.price * item.quantity).toFixed(2) }
-            </li>
-          ))}
-        </ul>
-        <div className="mt-4">
-          <p>
-            Total items: {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
-          </p>
-          <p>
-            Total price: ${totalPrice} {/* Display the total price with two decimal places */}
-          </p>
-        </div>
+        <CartSummary
+          cart={cart}
+          handleRemoveFromCart={handleRemoveFromCart}
+          handleIncreaseQuantity={handleIncreaseQuantity}
+          handleDecreaseQuantity={handleDecreaseQuantity}/>
+       
       </div>
     </div>
   );

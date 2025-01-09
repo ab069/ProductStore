@@ -8,7 +8,7 @@ const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handl
   return (
     <div className="mt-8">
       <h2 className="text-xl font-semibold">Cart Summary</h2>
-      <p>Total items: {cart.length}</p>
+      <p>Total items: {cart.reduce((acc, item) => acc + item.quantity, 0)}</p>
       <p>Total price: ${cart.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2)}</p>
 
       {cart.length > 0 && (
@@ -17,7 +17,7 @@ const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handl
           <ul>
             {cart.map((item) => (
               <li key={item.id} className="flex justify-between items-center">
-                <span>{item.name} (x{item.quantity})</span>
+                <span>{item.name} (x{item.quantity})- ${ (item.price * item.quantity).toFixed(2)}</span>
                 <div>
                   <button
                     onClick={() => handleDecreaseQuantity(item.id)}
@@ -48,7 +48,8 @@ const CartSummary = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handl
       <div className="mt-4">
         <button
           onClick={handleCheckout}
-          className="bg-blue-500 text-black px-4 py-2 rounded"
+          disabled={cart.length === 0} // Disable the button when cart is empty
+          className={`px-4 py-2 rounded ${cart.length === 0 ? 'bg-gray-400' : 'bg-blue-500'} text-black`}
         >
           Checkout
         </button>
